@@ -9,8 +9,15 @@
 //
 //	newActorCommand(bob, 'north');
 //
-// ...would execute the command >NORTH with bob as the gActor.
+// ...would execute the command >NORTH with bob as the gActor, and...
 //
+//	newActorCommand(bob, 'take pebble');
+//
+// ...would have bob try to >TAKE PEBBLE.
+//
+// This is substantially less efficient than adv3's native newActorAction(), 
+// but it allows commands to be constructed at runtime (for, for example, NPC
+// scripting) without having to resort to a forest of conditionals.
 //
 #include <adv3.h>
 #include <en_us.h>
