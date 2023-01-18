@@ -26,8 +26,16 @@ versionInfo:    GameID
         version = '1.0'
         IFID = '12345'
 	showAbout() {
-		"This is a simple test game that demonstrates the features
-		of the newActorCommand library.
+		"This is a bit of nonsense that theoretically demonstrates
+		the newActorCommand() interface.
+		<.p>
+		The only remotely interesting thing going on here is that
+		if the player does a >X ME, instead of examining themselves
+		they take the pebble (regardless of whether or not there's
+		a pebble present).
+		<.p>
+		This is silly, and is only to verify that the basic interface
+		is functional.
 		<.p>
 		Consult the README.txt document distributed with the library
 		source for a quick summary of how to use the library in your
@@ -39,13 +47,16 @@ versionInfo:    GameID
 ;
 
 startRoom:      Room 'Void'
-        "This is a featureless void."
+        "This is a featureless void. "
 ;
++me: Person
+	dobjFor(Examine) {
+		action() {
+			newActorCommand(me, 'take pebble');
+		}
+	}
+;
++pebble: Thing 'small round pebble' 'pebble';
 
-me:     Person
-        location = startRoom
-;
+gameMain: GameMainDef initialPlayerChar = me;
 
-gameMain:       GameMainDef
-        initialPlayerChar = me
-;
